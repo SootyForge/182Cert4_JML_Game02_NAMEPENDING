@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded = false;
 
-    private bool rotateToMainCamera = false;
+    public bool rotateToMainCamera = false;
     #endregion
     /*
     #region Variables - Camera Movement

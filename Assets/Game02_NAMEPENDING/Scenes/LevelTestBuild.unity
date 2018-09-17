@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e864a04bf5565f043992591313809cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1827691728}
+  target: {fileID: 10910505}
   xSensitivity: 120
   ySensitivity: 120
   hideCursor: 1
@@ -240,7 +240,7 @@ Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: pb_Mesh-265186
+  m_Name: pb_Mesh-9558
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -1898,10 +1898,11 @@ MonoBehaviour:
   playerRigid: {fileID: 0}
   moveSpeed: 3
   jumpHeight: 5
-  rayDst: 1.1
+  rayDst: 1
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 0
+  rotateToMainCamera: 0
 --- !u!54 &1827691730
 Rigidbody:
   m_ObjectHideFlags: 0
