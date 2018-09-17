@@ -36,10 +36,16 @@ public class PlayerController : MonoBehaviour
     */
     #endregion
 
-    // Use this for initialization
-    void Start()
+    void OnDrawGizmos()
     {
-        playerRigid = GetComponent<Rigidbody>();
+        Ray groundRay = new Ray(transform.position, Vector3.down);
+        Gizmos.DrawLine(groundRay.origin, groundRay.origin + groundRay.direction * rayDst);
+    }
+
+    // Use this for initialization
+//    void Start()
+//    {
+//        playerRigid = GetComponent<Rigidbody>();
         /*
         transform.SetParent(null);
 
@@ -53,7 +59,7 @@ public class PlayerController : MonoBehaviour
         x = angles.y;
         y = angles.x;
         */
-    }
+//    }
 
     bool IsGrounded()
     {
@@ -69,12 +75,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        #region Movement
-
         float inputH = Input.GetAxis("Horizontal") * moveSpeed;
         float inputV = Input.GetAxis("Vertical") * moveSpeed;
 
         Vector3 moveDir = new Vector3(inputH, 0f, inputV);
+
+        Vector3 camEuler = Camera.main.transform.eulerAngles;
+
+        if (rotateToMainCamera)
+        {
+            moveDir = Quaternion.AngleAxis(camEuler.y, Vector3.up) * moveDir;
+        }
 
         Vector3 force = new Vector3(moveDir.x, playerRigid.velocity.y, moveDir.z);
 
@@ -85,21 +96,13 @@ public class PlayerController : MonoBehaviour
 
         playerRigid.velocity = force;
 
-        #endregion
-
-        #region Player Rotation
-
-        Vector3 camEuler = Camera.main.transform.eulerAngles;
-
-        if (rotateToMainCamera)
-        {
-            moveDir = Quaternion.AngleAxis(camEuler.y, Vector3.up) * moveDir;
-        }
-
         Quaternion playerRotation = Quaternion.AngleAxis(camEuler.y, Vector3.up);
         transform.rotation = playerRotation;
 
-        #endregion
+        if (Input.GetButtonDown("Fire1"))
+        {
+            ShootRay();
+        }
         /*
         #region Camera Rotation
 
@@ -112,6 +115,21 @@ public class PlayerController : MonoBehaviour
 
         #endregion
         */
+    }
+
+    public void ShootRay()
+    {
+        Ray playerFire;
+        playerFire = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2, Screen.height / 2));
+        RaycastHit hitInfo;
+
+        if (Physics.Raycast(playerFire, out hitInfo, 500f))
+        {
+            if (hitInfo.collider)
+            {
+                Debug.Log("Cat.");
+            }
+        }
     }
     /*
     public static float ClampAngle(float angle, float min, float max)

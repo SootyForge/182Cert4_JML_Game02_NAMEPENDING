@@ -1895,14 +1895,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 506813e948bdadd4484deef3b5ff8385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRigid: {fileID: 0}
+  playerRigid: {fileID: 1827691730}
   moveSpeed: 3
   jumpHeight: 5
-  rayDst: 1
+  rayDst: 1.1
   ignoreLayers:
     serializedVersion: 2
     m_Bits: 0
-  rotateToMainCamera: 0
+  rotateToMainCamera: 1
 --- !u!54 &1827691730
 Rigidbody:
   m_ObjectHideFlags: 0
